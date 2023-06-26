@@ -38,8 +38,5 @@ public class Wget {
                 }
         );
         load.start();
-        //load2.start();
-
-
     }
 }
