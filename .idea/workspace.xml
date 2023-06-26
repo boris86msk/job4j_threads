@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f09ed14-70e7-4b38-8d0a-29226b36b117" name="Changes" comment="add README.md">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="3f09ed14-70e7-4b38-8d0a-29226b36b117" name="Changes" comment="delete again .idea package" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +82,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687796965413</updated>
-      <workItem from="1687796966859" duration="3600000" />
+      <workItem from="1687796966859" duration="3966000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1687798430383</created>
@@ -114,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687800417921</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="delete again .idea package">
+      <created>1687800663107</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687800663108</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +141,7 @@
     <MESSAGE value="add checkstyle" />
     <MESSAGE value="delete .idea package" />
     <MESSAGE value="add README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="add README.md" />
+    <MESSAGE value="delete again .idea package" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete again .idea package" />
   </component>
 </project>
