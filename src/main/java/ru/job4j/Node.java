@@ -9,7 +9,7 @@ public class Node<T> {
     }
 
     public void setNext(Node<T> next) {
-        if(this.next == null) {
+        if (this.next == null) {
             this.next = next;
         }
     }
