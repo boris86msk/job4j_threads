@@ -6,10 +6,12 @@ import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 
 public class Wget implements Runnable {
     private final String url;
     private final int speed;
+    private Properties properties = new Properties();
 
     public Wget(String url, int speed) {
         this.url = url;
@@ -19,7 +21,7 @@ public class Wget implements Runnable {
     @Override
     public void run() {
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream("pom_tmp.xml")) {
+             FileOutputStream fileOutputStream = new FileOutputStream(properties.getProperty("loadFile"))) {
             byte[] dataBuffer = new byte[1024];
             long start = System.currentTimeMillis();
             int bytesRead;
