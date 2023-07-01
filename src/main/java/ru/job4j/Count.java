@@ -15,5 +15,4 @@ public class Count {
     public synchronized int get() {
         return this.value;
     }
-
 }
