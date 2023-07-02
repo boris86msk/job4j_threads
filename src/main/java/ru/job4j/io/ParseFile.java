@@ -18,14 +18,14 @@ public final class ParseFile {
     }
 
     public String getContentWithoutUnicode() {
-        return content(n -> n > 0);
+        return content(n -> true);
     }
 
     private String content(Predicate<Character> filter) {
         StringBuilder res = new StringBuilder();
         try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(file))) {
             int data;
-            while ((data = in.read()) > 0) {
+            while ((data = in.read()) != -1) {
                 if (filter.test((char) data)) {
                     res.append((char) data);
                 }

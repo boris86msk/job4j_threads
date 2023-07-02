@@ -9,7 +9,7 @@ public class SaveFile {
     public static void saveContent(String content) throws IOException {
         Properties prop = new Properties();
         try (OutputStream o = new FileOutputStream(prop.getProperty("loadFile"))) {
-            for (int i = 0; i < content.length(); i += 1) {
+            for (int i = 0; i < content.length(); i++) {
                 o.write(content.charAt(i));
             }
         } catch (IOException e) {
