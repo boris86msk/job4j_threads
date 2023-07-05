@@ -12,47 +12,20 @@ public class AccountStorage {
     private final HashMap<Integer, Account> accounts = new HashMap<>();
 
     public boolean add(Account account) {
-        return putIfAbsent(account);
+        synchronized (this.accounts) {
+            return accounts.putIfAbsent(account.id(), account) == null;
+        }
     }
 
     public boolean update(Account account) {
-        return replace(account);
+        synchronized (this.accounts) {
+            return accounts.replace(account.id(), account) != null;
+        }
     }
 
     public boolean delete(int id) {
-        return remove(id);
-    }
-
-    private boolean putIfAbsent(Account account) {
         synchronized (this.accounts) {
-            boolean result = false;
-            if (!accounts.containsKey(account.id())) {
-                accounts.put(account.id(), account);
-                result = true;
-            }
-            return result;
-        }
-    }
-
-    private boolean replace(Account account) {
-        synchronized (this.accounts) {
-            if (!accounts.containsKey(account.id())) {
-                throw new IllegalStateException("Not found account by id = " + account.id());
-            } else {
-                accounts.put(account.id(), account);
-            }
-            return true;
-        }
-    }
-
-    private boolean remove(int id) {
-        synchronized (this.accounts) {
-            if (!accounts.containsKey(id)) {
-                throw new IllegalStateException("Not found account by id = " + id);
-            } else {
-                accounts.remove(id);
-            }
-            return true;
+            return accounts.remove(id) != null;
         }
     }
 
