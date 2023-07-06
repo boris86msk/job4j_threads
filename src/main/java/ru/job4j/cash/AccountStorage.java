@@ -41,13 +41,12 @@ public class AccountStorage {
             Optional<Account> fromAcc = this.getById(fromId);
             Optional<Account> toAcc = this.getById(toId);
             if (fromAcc.isPresent() && toAcc.isPresent()) {
-                if (fromAcc.get().amount() >= amount) {
-                    this.update(new Account(fromAcc.get().id(), fromAcc.get().amount() - amount));
-                    this.update(new Account(toAcc.get().id(), toAcc.get().amount() + amount));
-                    res = true;
-                } else {
+                if (fromAcc.get().amount() < amount) {
                     throw new IllegalArgumentException("insufficient funds for the transaction");
                 }
+                this.update(new Account(fromAcc.get().id(), fromAcc.get().amount() - amount));
+                this.update(new Account(toAcc.get().id(), toAcc.get().amount() + amount));
+                res = true;
             }
             return res;
         }
