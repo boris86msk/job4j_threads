@@ -4,9 +4,9 @@ import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ThreadSafe
 public class SingleLockList<T> implements Iterable<T> {
@@ -33,14 +33,14 @@ public class SingleLockList<T> implements Iterable<T> {
 
     private List<T> copy(List<T> origin) {
         synchronized (this) {
-            return origin.stream().toList();
+            return origin.stream().collect(Collectors.toList());
         }
     }
 
     @Override
     public Iterator<T> iterator() {
         synchronized (this) {
-            return list.iterator();
+            return copy(list).iterator();
         }
     }
 }
