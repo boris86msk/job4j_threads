@@ -52,7 +52,6 @@ class SimpleBlockingQueueTest {
         producer.start();
         producer.join();
         consumer.start();
-       // assertThat(producer.getState()).isEqualTo(Thread.State.WAITING);
     }
 
 }
