@@ -53,5 +53,4 @@ class SimpleBlockingQueueTest {
         producer.join();
         consumer.start();
     }
-
 }
