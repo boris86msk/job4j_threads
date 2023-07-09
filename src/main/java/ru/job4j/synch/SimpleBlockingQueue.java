@@ -21,35 +21,24 @@ public class SimpleBlockingQueue<T> {
         return queue.size();
     }
 
-    public void offer(T value) {
+    public void offer(T value) throws InterruptedException {
         synchronized (this) {
             while (queue.size() == maxSize) {
-                try {
-                    this.wait();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                this.wait();
             }
             queue.add(value);
-            if (queue.size() == 0) {
-                this.notify();
-            }
+            this.notify();
         }
     }
 
-    public T poll() {
+    public T poll() throws InterruptedException {
         synchronized (this) {
             while (queue.size() == 0) {
-                try {
-                    this.wait();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                this.wait();
             }
-            if (queue.size() == maxSize) {
-                this.notify();
-            }
-            return queue.poll();
+            T result = queue.poll();
+            this.notify();
+            return result;
         }
     }
 }
