@@ -12,19 +12,19 @@ class CountCasTest {
         CountCas countCas = new CountCas();
         Thread firstThread = new Thread(
                 () -> {
-                    IntStream.range(0,5)
+                    IntStream.range(0, 5)
                             .forEach(i -> countCas.increment());
                 }
         );
         Thread secondThread = new Thread(
                 () -> {
-                    IntStream.range(0,5)
+                    IntStream.range(0, 5)
                             .forEach(i -> countCas.increment());
                 }
         );
         Thread thirdThread = new Thread(
                 () -> {
-                    IntStream.range(0,5)
+                    IntStream.range(0, 5)
                             .forEach(i -> countCas.increment());
                 }
         );
