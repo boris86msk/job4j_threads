@@ -13,7 +13,7 @@ public class CountCas {
         int newValue;
         do {
             expectedValue = count.get();
-            newValue = expectedValue++;
+            newValue = expectedValue + 1;
         } while (!count.compareAndSet(expectedValue, newValue));
     }
 
