@@ -8,17 +8,13 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.*;
 
 class CacheCasTest {
-    public CacheCas cacheCas = new CacheCas();
-    public List<BaseDataCas> list = List.of(new BaseDataCas(1, 0),
-            new BaseDataCas(2, 0), new BaseDataCas(3, 0));
-
-    public void addBaseDataCas() {
-        list.forEach(b -> cacheCas.add(b));
-    }
 
     @Test
     public void wenAdd() {
-        addBaseDataCas();
+        CacheCas cacheCas = new CacheCas();
+        List<BaseDataCas> list = List.of(new BaseDataCas(1, 0),
+                new BaseDataCas(2, 0), new BaseDataCas(3, 0));
+        list.forEach(cacheCas::add);
         assertThat(cacheCas.getModel(1)).isNotNull();
         assertThat(cacheCas.getModel(2)).isNotNull();
         assertThat(cacheCas.getModel(3)).isNotNull();
@@ -27,8 +23,11 @@ class CacheCasTest {
 
     @Test
     public void wenDelete() {
-        addBaseDataCas();
-        list.forEach(b -> cacheCas.delete(b));
+        CacheCas cacheCas = new CacheCas();
+        List<BaseDataCas> list = List.of(new BaseDataCas(1, 0),
+                new BaseDataCas(2, 0), new BaseDataCas(3, 0));
+        list.forEach(cacheCas::add);
+        list.forEach(cacheCas::delete);
         cacheCas.add(new BaseDataCas(4, 0));
         assertThat(cacheCas.getModel(1)).isNull();
         assertThat(cacheCas.getModel(3)).isNull();
@@ -37,6 +36,7 @@ class CacheCasTest {
 
     @Test
     public void wenUpdate() {
+        CacheCas cacheCas = new CacheCas();
         BaseDataCas baseData1 = new BaseDataCas(1, 0);
         BaseDataCas baseData2 = new BaseDataCas(1, 0);
         BaseDataCas baseData3 = new BaseDataCas(1, 1);
@@ -56,6 +56,7 @@ class CacheCasTest {
 
     @Test
     public void wenThrowOptimisticException() {
+        CacheCas cacheCas = new CacheCas();
         BaseDataCas baseData1 = new BaseDataCas(1, 0);
         BaseDataCas baseData2 = new BaseDataCas(1, 1);
         cacheCas.add(baseData1);
