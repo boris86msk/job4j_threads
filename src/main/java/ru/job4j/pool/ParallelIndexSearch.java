@@ -1,6 +1,5 @@
 package ru.job4j.pool;
 
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
 public class ParallelIndexSearch<T> extends RecursiveTask<Integer> {
@@ -18,32 +17,27 @@ public class ParallelIndexSearch<T> extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        if (from == to) {
-            if (array[from].equals(object)) {
-                return from;
+        int res = -1;
+        if (to - from <= 10) {
+            for (int i = from; i <= to; i++) {
+                if (array[i].equals(object)) {
+                    res = i;
+                    break;
+                }
             }
-            return -1;
+            return res;
         }
 
         int mid = (from + to) / 2;
-        ParallelIndexSearch leftIndexSearch = new ParallelIndexSearch(array, object, from, mid);
-        ParallelIndexSearch rightIndexSearch = new ParallelIndexSearch(array, object, mid + 1, to);
+        ParallelIndexSearch<T> leftIndexSearch = new ParallelIndexSearch<>(array, object, from, mid);
+        ParallelIndexSearch<T> rightIndexSearch = new ParallelIndexSearch<>(array, object, mid + 1, to);
 
         leftIndexSearch.fork();
         rightIndexSearch.fork();
-        /**
-        int left = leftIndexSearch.join();
-        int right = rightIndexSearch.join();
-         */
-        return 1;
-    }
 
-    public static void main(String[] args) {
-        SomeObject[] array = new SomeObject[] {new SomeObject(1), new SomeObject(2)};
+        int leftRes = leftIndexSearch.join();
+        int rightRes = rightIndexSearch.join();
 
-        ParallelIndexSearch parallelIndexSearch = new ParallelIndexSearch(array, new SomeObject(2), 0, array.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        System.out.println(forkJoinPool.invoke(parallelIndexSearch));
-
+        return Math.max(leftRes, rightRes);
     }
 }

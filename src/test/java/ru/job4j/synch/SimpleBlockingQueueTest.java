@@ -2,7 +2,6 @@ package ru.job4j.synch;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
