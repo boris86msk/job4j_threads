@@ -18,9 +18,7 @@ class ParallelIndexSearchTest {
         array[4] = 2;
         array[5] = 10;
         Integer obj = 7;
-        ParallelIndexSearch search = new ParallelIndexSearch(array, obj, 0, array.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        assertThat(forkJoinPool.invoke(search)).isEqualTo(3);
+        assertThat(ParallelIndexSearch.indexSearch(array, obj)).isEqualTo(3);
     }
 
     @Test
@@ -30,9 +28,7 @@ class ParallelIndexSearchTest {
             array[i] = i;
         }
         Integer obj = 225;
-        ParallelIndexSearch search = new ParallelIndexSearch(array, obj, 0, array.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        assertThat(forkJoinPool.invoke(search)).isEqualTo(225);
+        assertThat(ParallelIndexSearch.indexSearch(array, obj)).isEqualTo(225);
     }
 
     @Test
@@ -43,9 +39,7 @@ class ParallelIndexSearchTest {
         array[2] = "&&&";
         array[3] = "156";
         array[4] = "object";
-        ParallelIndexSearch search = new ParallelIndexSearch(array, "object", 0, array.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        assertThat(forkJoinPool.invoke(search)).isEqualTo(4);
+        assertThat(ParallelIndexSearch.indexSearch(array, "object")).isEqualTo(4);
     }
 
     @Test
@@ -57,9 +51,7 @@ class ParallelIndexSearchTest {
         array[3] = "156";
         array[4] = "object";
         array[5] = "new";
-        ParallelIndexSearch search = new ParallelIndexSearch(array, "OK!", 0, array.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        assertThat(forkJoinPool.invoke(search)).isEqualTo(-1);
+        assertThat(ParallelIndexSearch.indexSearch(array, "OK!")).isEqualTo(-1);
     }
 
     @Test
@@ -78,8 +70,6 @@ class ParallelIndexSearchTest {
         objects[10] = new SomeObject(12);
         objects[11] = new SomeObject(14);
         SomeObject obj = new SomeObject(12);
-        ParallelIndexSearch search = new ParallelIndexSearch(objects, obj, 0, objects.length - 1);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        assertThat(forkJoinPool.invoke(search)).isEqualTo(10);
+        assertThat(ParallelIndexSearch.indexSearch(objects, obj)).isEqualTo(10);
     }
 }
