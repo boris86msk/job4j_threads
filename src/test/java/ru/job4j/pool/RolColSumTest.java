@@ -27,14 +27,10 @@ class RolColSumTest {
         ints[2][1] = 1;
         ints[2][2] = 3;
 
-        RolColSum.Sums[] sum = RolColSum.sum(ints);
-
-        assertThat(sum[0].getRowSum()).isEqualTo(6);
-        assertThat(sum[0].getColSum()).isEqualTo(5);
-        assertThat(sum[1].getRowSum()).isEqualTo(6);
-        assertThat(sum[1].getColSum()).isEqualTo(8);
-        assertThat(sum[2].getRowSum()).isEqualTo(6);
-        assertThat(sum[2].getColSum()).isEqualTo(5);
+        Sums[] referenceArray = new Sums[] {new Sums(6, 5), new Sums(6, 8),
+                new Sums(6, 5)};
+        Sums[] sums = RolColSum.sum(ints);
+        assertThat(sums).isEqualTo(referenceArray);
     }
 
     @Test
@@ -50,14 +46,9 @@ class RolColSumTest {
         ints[2][1] = 1;
         ints[2][2] = 3;
 
-        RolColSum.Sums[] sum = RolColSum.asyncSum(ints);
-
-        assertThat(sum[0].getRowSum()).isEqualTo(6);
-        assertThat(sum[0].getColSum()).isEqualTo(5);
-        assertThat(sum[1].getRowSum()).isEqualTo(6);
-        assertThat(sum[1].getColSum()).isEqualTo(8);
-        assertThat(sum[2].getRowSum()).isEqualTo(6);
-        assertThat(sum[2].getColSum()).isEqualTo(5);
+        Sums[] referenceArray = new Sums[] {new Sums(6, 5), new Sums(6, 8),
+                new Sums(6, 5)};
+        Sums[] sums = RolColSum.asyncSum(ints);
+        assertThat(sums).isEqualTo(referenceArray);
     }
-
 }

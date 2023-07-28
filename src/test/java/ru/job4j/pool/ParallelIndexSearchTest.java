@@ -2,8 +2,6 @@ package ru.job4j.pool;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ForkJoinPool;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ParallelIndexSearchTest {
